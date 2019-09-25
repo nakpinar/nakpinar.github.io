@@ -39,9 +39,9 @@ a:active {
 
 <h1>Teaching Assistant</h1>
 
-I have assisted teaching and tutored Bachelor and Master students for most of my academic life so far. Dependent on the course, this includes grading of homeworks and exams, teaching of practice sessions, office hours, designing homework problems, preparing lecture materials, and general course remodeling. 
+I have assisted teaching and tutored Bachelor and Master students for most of my academic life. Dependent on the course, this included grading of homeworks and exams, teaching of practice sessions, office hours, designing homework problems, preparing lecture materials, and general course remodeling. Here is a list of courses I assisted in.
 
-<b>@Carnegie Mellon University</b>
+<h3>@Carnegie Mellon University</h3>
 
 <ul>
   <li><b>Fall 2019:</b> 36-468/668, Text Analysis,  <a href = "https://www.cmu.edu/dietrich/english/people/faculty/bios/david-brown.html">David Brown</a>, <a href = "syll_468.pdf">Syllabus</a></li>
@@ -50,10 +50,10 @@ I have assisted teaching and tutored Bachelor and Master students for most of my
 </ul>
 
 
-<b><a href = "https://www.uni-freiburg.de/?set_language=en">@University of Freiburg</a></b>
+<h3><a href = "https://www.uni-freiburg.de/?set_language=en">@University of Freiburg</a></h3>
 
 <ul>
-  <li><b>Spring 2018:</b> Deptartment of Mathematics, Introduction to Programming in C++, <a href = "https://aam.uni-freiburg.de/agba/index.html?l=en">S&#246;ren Bartels</a></li>
+  <li><b>Spring 2018:</b> Department of Mathematics, Introduction to Programming in C++, <a href = "https://aam.uni-freiburg.de/agba/index.html?l=en">S&#246;ren Bartels</a></li>
   <li><b>Fall 2016:</b> Information System Research Department, Management Informations Systems/Introduction to Programming in R, <a href = "https://www.is.uni-freiburg.de/mitarbeiter-en/team/prof-dr-dirk-neumann">Dirk Neumann</a> </li>
   <li><b>Fall 2015:</b> Department of Mathematics, Mathematics for Students of Chemistry, <a href = "http://home.mathematik.uni-freiburg.de/knies/?l=en">Susanne Knies</a> </li>
   <li><b>Fall 2014:</b> Department of Mathematics, Linear Algebra, <a href = "http://home.mathematik.uni-freiburg.de/soergel/">Wolfgang S&#246;rgel</a></li>
