@@ -20,7 +20,7 @@ title: Nil-Jana Akpinar
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: ""
+  About Me: "aboutme"
 #  Resources:
 #    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
 #    - Learn markdown: "http://www.markdowntutorial.com/"
