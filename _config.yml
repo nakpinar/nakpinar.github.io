@@ -20,7 +20,7 @@ description: PhD student in Statistics at Carnegie Mellon University
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: ""
+  About Me: "index"
   Research: "research"
   Teaching: "teaching"
   Contact: "contact"
