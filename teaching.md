@@ -3,6 +3,39 @@ layout: page
 title: Teaching
 ---
 
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn {
+  background-color: #404040;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: #202020;
+}
+
+a:link {
+  color: #404040;
+}
+a:visited {
+  color: #404040;
+}
+a:hover {
+  color: #404040;
+}
+a:active {
+  color: #404040;
+} 
+</style>
+</head>
 <b>Teaching Assistant at Carnegie Mellon University</b>
 
 <ul>
@@ -12,7 +45,7 @@ title: Teaching
 </ul>
 
 
-<b>Teaching Assistant at University of Freiburg</b>
+<b>Teaching Assistant at <a href = "https://www.uni-freiburg.de/?set_language=en">University of Freibur</a></b>
 
 <ul>
   <li><b>Spring 2018:</b> Deptartment of Mathematics, Introduction to Programming in C++</li>
