@@ -45,7 +45,7 @@ a:active {
 </ul>
 
 
-<b>Teaching Assistant at <a href = "https://www.uni-freiburg.de/?set_language=en">University of Freibur</a></b>
+<b>Teaching Assistant at <a href = "https://www.uni-freiburg.de/?set_language=en">University of Freiburg</a></b>
 
 <ul>
   <li><b>Spring 2018:</b> Deptartment of Mathematics, Introduction to Programming in C++</li>
