@@ -6,8 +6,8 @@ title: Teaching
 <b>Teaching Assistant at Carnegie Mellon University</b>
 
 <ul>
-  <li><b>Fall 2019:</b> 36-468/668, Text Analysis</li>
-  <li><b>Spring 2019:</b> 36-402, Advanced Methods for Data Analysis, <a href = "http://www.stat.cmu.edu/~cshalizi/uADA/19/"></a>Syllabus</li>
+  <li><b>Fall 2019:</b> 36-468/668, Text Analysis,  <a href = "syll_468.pdf">Syllabus</a></li>
+  <li><b>Spring 2019:</b> 36-402, Advanced Methods for Data Analysis, <a href = "http://www.stat.cmu.edu/~cshalizi/uADA/19/">Syllabus</a></li>
   <li><b>Fall 2018:</b> 36-218, Probability Theory for Computer Scientists, <a href = "syll_218.pdf">Syllabus</a></li>
 </ul>
 
