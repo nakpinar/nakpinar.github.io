@@ -21,6 +21,9 @@ description: PhD student in Statistics at Carnegie Mellon University
 # List of links in the navigation bar
 navbar-links:
   About Me: ""
+  Research: "research"
+  Teaching: "teaching"
+  Contact: "contact"
 #  Resources:
 #    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
 #    - Learn markdown: "http://www.markdowntutorial.com/"
