@@ -7,7 +7,7 @@ title: Teaching
 
 <ul>
   <li><b>Fall 2019:</b> 36-468/668, Text Analysis</li>
-  <li><b>Spring 2019:</b> 36-402, Advanced Data Analysis</li>
+  <li><b>Spring 2019:</b> 36-402, Advanced Methods for Data Analysis, <a href = "http://www.stat.cmu.edu/~cshalizi/uADA/19/"></a>Syllabus</li>
   <li><b>Fall 2018:</b> 36-218, Probability Theory for Computer Scientists</li>
 </ul>
 
