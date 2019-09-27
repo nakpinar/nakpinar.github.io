@@ -23,7 +23,7 @@ title: Research
 }
 
 p.small {
-  line-height: 1.0;
+  line-height: 1.3;
 }
 
 </style>
