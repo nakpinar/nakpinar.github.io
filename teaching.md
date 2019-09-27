@@ -38,7 +38,7 @@ I have assisted teaching and tutored Bachelor and Master students for most of my
 </ul>
 
 
-<h3><a href = "https://www.uni-freiburg.de/?set_language=en">@University of Freiburg</a></h3>
+<h3>@University of Freiburg</h3>
 
 <ul>
   <li><b>Spring 2018:</b> Department of Mathematics, Introduction to Programming in C++, <a href = "https://aam.uni-freiburg.de/agba/index.html?l=en">S&#246;ren Bartels</a></li>
