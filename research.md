@@ -22,18 +22,6 @@ title: Research
   background-color: #202020;
 }
 
-a:link {
-}
-a:visited {
-  color: #404040;
-}
-a:hover {
-  color: #404040;
-}
-a:active {
-  color: #404040;
-} 
-
 p.small {
   line-height: 0.9;
 }
