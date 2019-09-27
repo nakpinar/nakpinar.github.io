@@ -23,7 +23,6 @@ title: Research
 }
 
 a:link {
-  color: #404040;
 }
 a:visited {
   color: #404040;
@@ -36,7 +35,7 @@ a:active {
 } 
 
 p.small {
-  line-height: 0.8;
+  line-height: 0.9;
 }
 
 </style>
