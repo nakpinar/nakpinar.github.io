@@ -29,7 +29,7 @@ p.small {
 </style>
 </head>
 
-My research interests lie broadly in Statistical Methodology, Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. I am also very excited about targeting applied problems, particulary in the social sciences.
+My research interests lie broadly in Statistical Methodology, Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. I am also very excited about targeting applied problems, particulary in the social sciences and education.
 Here are some current and recent projects. 
 
 <h1>Current Projects</h1>
@@ -64,14 +64,14 @@ Based on data from the comprehensive course support system <a href = "https://ww
 <h1>Publications& Presentations</h1>
 
 <ul>
-  <li><a href = "https://arxiv.org/abs/1901.10289"><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
+  <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
 Bounds for Recurrent Neural Networks with Application to Combinatorial
-Graph Problems, arXiv:1901.10289</a></li>
+Graph Problems, arXiv:1901.10289, [<a href = "https://arxiv.org/abs/1901.10289">paper</a></li>]
   <li><b>Akpinar, Nil-Jana</b>, Feuerriegel, S. (2017) A Model-free Solver For Arbitrary
 Graph Problems: Predicting Solutions With Deep Learning, INFORMS Annual
 Meeting, Houston, Texas. (Presented by S. Feuerriegel)</li>
-  <li><a href = "https://link.springer.com/chapter/10.1007/978-3-319-63546-0_10"><b>Akpinar, Nil-Jana</b>, Alfano, S., Kersten, G., Yu, B. (2017). The Role of Sentiment and Cultural Differences in the Communation Process of e-Negotiations.
-In: Schoop M., Kilgour D. (eds) Group Decision and Negotiation. A Socio-Technical Perspective. GDN 2017. Springer, p.132-144.</a></li>
+  <li><b>Akpinar, Nil-Jana</b>, Alfano, S., Kersten, G., Yu, B. (2017). The Role of Sentiment and Cultural Differences in the Communation Process of e-Negotiations.
+In: Schoop M., Kilgour D. (eds) Group Decision and Negotiation. A Socio-Technical Perspective. GDN 2017. Springer, p.132-144, [<a href = "https://link.springer.com/chapter/10.1007/978-3-319-63546-0_10">paper</a></li>]
 </ul>
 
 
