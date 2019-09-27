@@ -34,6 +34,11 @@ a:hover {
 a:active {
   color: #404040;
 } 
+
+p.small {
+  line-height: 0.7;
+}
+
 </style>
 </head>
 
