@@ -39,10 +39,10 @@ a:active {
 
 <h1>Current Projects</h1>
 
-<p><img src="/img/diderot.png" alt="Diderot" style="float: left;padding: 20px;">
+<p><img src="/img/diderot.png" alt="Diderot" width="300" height="300" style="float: left;padding: 20px;">
 
 
-<p><img src="/img/pol.png" alt="Predictive Policing" style="float: left;padding: 20px;">
+<p><img src="/img/pol.png" alt="Predictive Policing" width="300" height="300" style="float: left;padding: 20px;">
 
 
 <h1>Publications& Presentations</h1>
