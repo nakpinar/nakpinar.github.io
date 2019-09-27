@@ -40,10 +40,16 @@ a:active {
 <h1>Current Projects</h1>
 
 <p><img src="/img/diderot.png" alt="Diderot" width="300" height="300" style="float: left;padding: 20px;">
+<h3>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h3>
+<h4>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h4>
 
+<b>Idea:</b> 
 
 <p><img src="/img/pol.png" alt="Predictive Policing" width="300" height="300" style="float: left;padding: 20px;">
+<h3>Social Bias and Misspecification in Predictive Policing</h3>
+<h4>Nil-Jana Akpinar, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h4>
 
+<b>Idea:</b> 
 
 <h1>Publications& Presentations</h1>
 
