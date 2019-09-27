@@ -43,12 +43,13 @@ a:active {
 <h4>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h4>
 <h5>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h5>
 
-<b>Idea:</b> Educational technology has become an integral part of learning and teaching at many schools and universities, and data collected from such system allows a close look at students' learning behavior on an individual level. This promises opportunities in various directions, e.g. the development of early warning systems that facilitate instructors to provide more immediate help to struggeling students.
+<b>Idea:</b> Education software has become an integral part of teaching in many universities, and data collected from such system allows a close look at students' learning behavior. This promises opportunities in various directions, e.g. the development of early warning systems to provide more support to struggeling students.
 Based on data from the comprehensive course support system <a href = "https://www.diderot.one/">Diderot</a>, we analyze students' behavior in large undergraduate level classes to answer questions such as `What drives students' success?'.
 
-<b>Keywords: Educational Data Mining, <a href = "https://www.diderot.one/">Diderot</a></b>
-
 <br>
+<b>Keywords:</b> Educational Data Mining, <a href = "https://www.diderot.one/">Diderot</a>
+
+<br><br>
 
 <p><img src="/img/pol.png" alt="Predictive Policing" width="300" height="300" style="float: left;padding: 20px;">
 <h4>Social Bias and Misspecification in Predictive Policing</h4>
@@ -56,7 +57,13 @@ Based on data from the comprehensive course support system <a href = "https://ww
 
 <b>Idea:</b> 
 
-<b>Keywords: Predictive Policing, Fairness, Accountability and Transparency in Machine Learning</b>
+<br>
+
+<b>Keywords:</b> Predictive Policing, Fairness, Accountability and Transparency in Machine Learning
+
+
+<br><br>
+
 
 <h1>Publications& Presentations</h1>
 
