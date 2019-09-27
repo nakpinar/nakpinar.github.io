@@ -36,13 +36,14 @@ a:active {
 } 
 
 p.small {
-  line-height: 0.1;
+  line-height: 0.5;
 }
 
 </style>
 </head>
 
-My research interests lie broadly in Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. Here are some current and recent projects. 
+My research interests lie broadly in Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. I am very excited about targeting applied problems, particulary in the social sciences.
+Here are some current and recent projects. 
 
 <h1>Current Projects</h1>
 
@@ -50,12 +51,12 @@ My research interests lie broadly in Statistical Machine Learning, and especiall
 <h4>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h4>
 <h5>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h5>
 
-<small><b>Idea:</b> Education software has become an integral part of teaching in many universities, and data collected from such system allows a close look at students' learning behavior. This promises opportunities in various directions, e.g. the development of early warning systems to provide more support to struggeling students.
+<p class = 'small'><b>Idea:</b> Education software has become an integral part of teaching in many universities, and data collected from such system allows a close look at students' learning behavior. This promises opportunities in various directions, e.g. the development of early warning systems to provide more support to struggeling students.
 Based on data from the comprehensive course support system <a href = "https://www.diderot.one/">Diderot</a>, we analyze students' behavior in large undergraduate level classes to answer questions such as `What drives students' success?'.
 
 <br>
 <b>Keywords:</b> Educational Data Mining, <a href = "https://www.diderot.one/">Diderot</a>
-</small>
+</p>
 
 <br><br>
 
@@ -63,12 +64,12 @@ Based on data from the comprehensive course support system <a href = "https://ww
 <h4>Social Bias and Misspecification in Predictive Policing Algorithms</h4>
 <h5>Nil-Jana Akpinar, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h5>
 
-<small><b>Idea:</b> More and more US police departments are starting to use predictive policing software to assess where future crime is likely to occur, and which areas should be patroled most heavily. Recent lines of research (e.g. <a href = "https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x">Lum and Isaac, 2016</a>) questions how fair these algorithms are and hypothesized that they facilitate a vicious circle of overpolicing minority populations. We explore the roles of data bias and model misspecification on predictive policing algorithms taylored to inform hotspot policing programs. 
+<p class = 'small'><b>Idea:</b> More and more US police departments are starting to use predictive policing software to assess where future crime is likely to occur, and which areas should be patroled most heavily. Recent lines of research (e.g. <a href = "https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x">Lum and Isaac, 2016</a>) questions how fair these algorithms are and hypothesized that they facilitate a vicious circle of overpolicing minority populations. We explore the roles of data bias and model misspecification on predictive policing algorithms taylored to inform hotspot policing programs. 
 
 <br>
 
 <b>Keywords:</b> Predictive Policing, Fairness, Accountability and Transparency in Machine Learning
-</small>
+</p>
 
 <br><br>
 
