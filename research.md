@@ -34,7 +34,7 @@ Here are some current and recent projects.
 
 <h1>Current Projects</h1>
 
-<p><img src="/img/diderot.png" alt="Diderot" width=350" height="350" style="float: left;padding: 10px;">
+<p><img src="/img/diderot.png" alt="Diderot" width="350" height="350" style="float: left;padding: 10px;">
 <h4>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h4>
 <h5>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h5>
 
