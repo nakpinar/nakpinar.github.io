@@ -42,9 +42,9 @@ a:active {
 <h1>Publications& Presentations</h1>
 
 <ul>
-  <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
+  <li><a href = "https://arxiv.org/abs/1901.10289"><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
 Bounds for Recurrent Neural Networks with Application to Combinatorial
-Graph Problems, arXiv:1901.10289</li>
+Graph Problems, arXiv:1901.10289</a></li>
   <li><b>Akpinar, Nil-Jana</b>, Feuerriegel, S. (2017) A Model-free Solver For Arbitrary
 Graph Problems: Predicting Solutions With Deep Learning, INFORMS Annual
 Meeting, Houston, Texas. (Presented by S. Feuerriegel)</li>
