@@ -36,7 +36,7 @@ a:active {
 } 
 
 p.small {
-  line-height: 0.7;
+  line-height: 0.5;
 }
 
 </style>
