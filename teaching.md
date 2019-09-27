@@ -39,7 +39,7 @@ a:active {
 
 <h1>Teaching Assistant</h1>
 
-I have assisted teaching and tutored Bachelor and Master students for most of my academic life. Dependent on the course, this included grading of homeworks and exams, teaching of practice sessions, office hours, designing homework problems, preparing lecture materials, and general course remodeling. Here is a list of courses I assisted in.
+I have assisted teaching and tutored Bachelor and Master students for most of my academic life. Dependent on the course, this included grading of homeworks and exams, teaching of practice sessions, office hours, designing homework problems, preparing lecture materials, and general course remodeling. Here is a list of courses I assisted in alond with their syllabuses.
 
 <h3>@Carnegie Mellon University</h3>
 
