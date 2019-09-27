@@ -42,6 +42,8 @@ p.small {
 </style>
 </head>
 
+My research interests lie broadly in Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. Here are some current and recent projects. 
+
 <h1>Current Projects</h1>
 
 <p><img src="/img/diderot.png" alt="Diderot" width="250" height="250" style="float: left;padding: 10px;">
