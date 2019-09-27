@@ -43,11 +43,12 @@ a:active {
 <h4>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h4>
 <h5>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h5>
 
-<b>Idea:</b> Education software has become an integral part of teaching in many universities, and data collected from such system allows a close look at students' learning behavior. This promises opportunities in various directions, e.g. the development of early warning systems to provide more support to struggeling students.
+<small><b>Idea:</b> Education software has become an integral part of teaching in many universities, and data collected from such system allows a close look at students' learning behavior. This promises opportunities in various directions, e.g. the development of early warning systems to provide more support to struggeling students.
 Based on data from the comprehensive course support system <a href = "https://www.diderot.one/">Diderot</a>, we analyze students' behavior in large undergraduate level classes to answer questions such as `What drives students' success?'.
 
 <br>
 <b>Keywords:</b> Educational Data Mining, <a href = "https://www.diderot.one/">Diderot</a>
+</small>
 
 <br><br>
 
