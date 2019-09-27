@@ -39,9 +39,9 @@ a:active {
 
 <h1>Current Projects</h1>
 
-<p><img src="/img/diderot.png" alt="Diderot" width="200" height="200" style="float: left;padding: 20px;">
-<h3>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h3>
-<h4>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h4>
+<p><img src="/img/diderot.png" alt="Diderot" width="300" height="300" style="float: left;padding: 20px;">
+<h4>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h4>
+<h5>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h5>
 
 <b>Idea:</b> Educational technology has become an integral part of learning and teaching at many schools and universities, and data collected from such system allows a close look at students' learning behavior on an individual level. This promises opportunities in various directions, e.g. the development of early warning systems that facilitate instructors to provide more immediate help to struggeling students.
 Based on data from the comprehensive course support system <a href = "https://www.diderot.one/">Diderot</a>, we analyze students' behavior in large undergraduate level classes to answer questions such as `What drives students' success?'.
@@ -50,9 +50,9 @@ Based on data from the comprehensive course support system <a href = "https://ww
 
 <br>
 
-<p><img src="/img/pol.png" alt="Predictive Policing" width="200" height="200" style="float: left;padding: 20px;">
-<h3>Social Bias and Misspecification in Predictive Policing</h3>
-<h4>Nil-Jana Akpinar, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h4>
+<p><img src="/img/pol.png" alt="Predictive Policing" width="300" height="300" style="float: left;padding: 20px;">
+<h4>Social Bias and Misspecification in Predictive Policing</h4>
+<h5>Nil-Jana Akpinar, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h5>
 
 <b>Idea:</b> 
 
