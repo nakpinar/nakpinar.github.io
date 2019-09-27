@@ -42,7 +42,7 @@ p.small {
 </style>
 </head>
 
-My research interests lie broadly in Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. I am very excited about targeting applied problems, particulary in the social sciences.
+My research interests lie broadly in Statistical Methodology, Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. I am also very excited about targeting applied problems, particulary in the social sciences.
 Here are some current and recent projects. 
 
 <h1>Current Projects</h1>
