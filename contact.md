@@ -9,14 +9,14 @@ title: Contact
 </head>
 <body>
 
-<div style="float: left;padding: 20px;><i class="fa fa-map-marker" style="font-size:48px;color:#404040"></i></div>
+<div><i class="fa fa-map-marker" style="font-size:48px;color:#404040" style="float: left;padding: 20px;></i></div>
 <div>
    Department of Statistics and Data Science <br>
    Carnegie Mellon University <br>
    Pittsburgh, PA, USA
 </div>
 <br>
-<div style="float: left;padding: 20px;><i class="fa fa-envelope" style="font-size:48px;color:#404040">
+<div><i class="fa fa-envelope" style="font-size:48px;color:#404040" style="float: left;padding: 20px;>
 </i></div>
 
 <div>nakpinar@andrew.cmu.edu</div>
