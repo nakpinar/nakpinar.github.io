@@ -26,8 +26,9 @@ title: Contact
    Pittsburgh, PA, USA
    </h4></span>
 <br>
+<br>
 <span class="fa fa-envelope" style="font-size:48px;color:#404040"></span>
-<h4>nakpinar@andrew.cmu.edu</h4>
+<span><h4>nakpinar@andrew.cmu.edu</h4></span>
 
 </body>
 </html> 
