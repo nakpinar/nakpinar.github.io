@@ -8,6 +8,12 @@ title: Contact
   position: relative; /* Helps us control overlap */
   padding-left: 20px; /* Creates space for the Phone Icon */
   }
+      .icon {
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 5px;
+  left: 5px;
+}
    </style>
 
 <head> 
