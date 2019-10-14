@@ -8,13 +8,6 @@ title: Contact
   position: relative; /* Helps us control overlap */
   padding-left: 20px; /* Creates space for the Phone Icon */
   }
-      h4:after {
-  content: '\f095';
-  font-family: fontAwesome;
-  position: absolute;
-  left: 0; /* Adjust as needed */
-  top: 3px; /* Adjust as needed */
-  }
    </style>
 
 <head> 
