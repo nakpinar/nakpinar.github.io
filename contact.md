@@ -15,12 +15,11 @@ title: Contact
 </head>
 <body>
 
-<i class="fa fa-map-marker" style="font-size:48px;color:#404040"></i>
-<h4>
+<i class="fa fa-map-marker" style="font-size:48px;color:#404040"><h4>
    Department of Statistics and Data Science <br>
    Carnegie Mellon University <br>
    Pittsburgh, PA, USA
-</h4>
+</h4></i>
 <br>
 <i class="fa fa-envelope" style="font-size:48px;color:#404040"></i>
 
