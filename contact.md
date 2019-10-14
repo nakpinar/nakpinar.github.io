@@ -2,8 +2,6 @@
 layout: page
 title: Contact
 ---
-
-<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,13 +9,13 @@ title: Contact
 </head>
 <body>
 
-<i class="fa fa-map-marker" style="font-size:48px;color:grey">
-   Department of Statistics and Data Science <br>
+<i class="fa fa-map-marker" style="font-size:48px;color:#404040">
+</i>
+Department of Statistics and Data Science <br>
    Carnegie Mellon University <br>
    Pittsburgh, PA, USA
-</i>
 <br>
-<i class="fa fa-envelope" style="font-size:48px;color:greay">
+<i class="fa fa-envelope" style="font-size:48px;color:#404040">
   nakpinar@andrew.cmu.edu
 </i>
 
