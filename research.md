@@ -61,7 +61,7 @@ Based on data from the comprehensive course support system <a href = "https://ww
 <br><br>
 
 
-<h1>Publications& Presentations</h1>
+<h1>Publications & Presentations</h1>
 <br>
 <ul>
   <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
