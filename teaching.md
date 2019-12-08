@@ -48,3 +48,11 @@ I have assisted teaching and tutored Bachelor and Master students for most of my
   <li><b>Spring 2014:</b> Department of Mathematics, Introduction to Programming in C, Patrick Schreier</li>
 </ul>
 
+<h1>Advising and Mentoring</h1>
+
+<ul>
+  <li><b>Fall 2019:</b> As a Data Science Intitiative (DSI) Project Fellow, I advised a group of undergraduate students in an industry project with Penguin Random House. </li>
+</ul>
+
+
+
