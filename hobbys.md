@@ -29,8 +29,7 @@ p.small {
 </style>
 </head>
 
-
-    <!-- Show static HTML/CSS as a placeholder in case js is not enabled - javascript include will override this if things work -->
+      <!-- Show static HTML/CSS as a placeholder in case js is not enabled - javascript include will override this if things work -->
       <style type="text/css" media="screen">
   .gr_custom_container_1575848963 {
     /* customize your Goodreads widget container here*/
@@ -174,3 +173,5 @@ p.small {
 
       </div>
       <script src="https://www.goodreads.com/review/custom_widget/104083441.What%20I%20am%20currently%20reading?cover_position=left&cover_size=medium&num_books=100&order=a&shelf=currently-reading&show_author=1&show_cover=1&show_rating=0&show_review=0&show_tags=0&show_title=1&sort=author&widget_bg_color=FFFFFF&widget_bg_transparent=&widget_border_width=1&widget_id=1575848963&widget_text_color=000000&widget_title_size=medium&widget_width=full" type="text/javascript" charset="utf-8"></script>
+
+    
