@@ -1,3 +1,33 @@
+---
+layout: page
+title: Research
+---
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn {
+  background-color: #404040;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: #202020;
+}
+
+p.small {
+  line-height: 1.3;
+}
+
+</style>
+</head>
 
 
     <!-- Show static HTML/CSS as a placeholder in case js is not enabled - javascript include will override this if things work -->
