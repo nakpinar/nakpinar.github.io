@@ -32,7 +32,7 @@ I have assisted teaching and tutored Bachelor and Master students for most of my
 <h3>@Carnegie Mellon University</h3>
 
 <ul>
-  <li>Spring 2020:</li> 36-315, Statistical Graphics and Visualization, <a href = "http://www.stat.cmu.edu/people/faculty/zach-branson">Zach Branson<a>
+  <li><b>Spring 2020:</b> 36-315, Statistical Graphics and Visualization, <a href = "http://www.stat.cmu.edu/people/faculty/zach-branson">Zach Branson<a></li>
   <li><b>Fall 2019:</b> 36-468/668, Text Analysis,  <a href = "https://www.cmu.edu/dietrich/english/people/faculty/bios/david-brown.html">David Brown</a>, <a href = "syll_468.pdf">Syllabus</a></li>
   <li><b>Spring 2019:</b> 36-402, Advanced Methods for Data Analysis, <a href = "http://www.stat.cmu.edu/~cshalizi/">Cosma Shalizi</a>, <a href = "http://www.stat.cmu.edu/~cshalizi/uADA/19/">Syllabus</a></li>
   <li><b>Fall 2018:</b> 36-218, Probability Theory for Computer Scientists, <a href = "http://www.stat.cmu.edu/~genovese/">Christopher Genovese</a>, <a href = "syll_218.pdf">Syllabus</a></li>
@@ -52,7 +52,7 @@ I have assisted teaching and tutored Bachelor and Master students for most of my
 <h1>Advising and Mentoring</h1>
 
 <ul>
-  <li><b>Fall 2019 and Spring 2020:</b> As a Data Science Intitiative (DSI) Project Fellow, I advise two groups of undergraduate students in industry consulting projects with Penguin Random House and Giant Eagle. </li>
+  <li><b>Fall 2019 & Spring 2020:</b> As a Data Science Intitiative (DSI) Project Fellow, I advise two groups of undergraduate students in industry consulting projects with Penguin Random House and Giant Eagle. </li>
 </ul>
 
 
