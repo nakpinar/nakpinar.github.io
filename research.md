@@ -64,7 +64,7 @@ Based on data from the comprehensive course support system <a href = "https://ww
 <h1>Publications & Presentations</h1>
 <br>
 <ul>
-  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data, Work in Progress.</li>
+  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data, Work in Progress.</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
 Bounds for Recurrent Neural Networks with Application to Combinatorial
 Graph Problems. To appear in: Thirty-Fourth Conference on Artifical Intelligence AAAI (Student Abstract), 2020, [<a href = "https://arxiv.org/abs/1901.10289">long version].</a></li><br>
