@@ -34,28 +34,22 @@ Here are some current and recent projects.
 
 <h1>Current Projects</h1>
 
-<p><img src="/img/diderot.png" alt="Diderot" width="350" height="350" style="float: left;padding: 10px;">
-<h4>Analyzing Student Behavior In Blended Courses Based On High-Granularity Clickstream Data</h4>
-<h5>Nil-Jana Akpinar, <a href = "http://www.umut-acar.org/">Umut Acar</a>, <a href = "https://www.stat.cmu.edu/~aramdas/">Aaditya Ramdas</a></h5>
+<!--<p><img src="/img/diderot.png" alt="Diderot" width="350" height="350" style="float: left;padding: 10px;"> -->
+<h4>Fairness in Liver Transplant Allocations</h4>
+<h5>Nil-Jana Akpinar, <a href = "http://zacklipton.com/">Zachary Lipton</a>, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h5>
 
-<p class = 'small'><b>Idea:</b> Education software has become an integral part of teaching in many universities, and data collected from such system allows a close look at students' learning behavior. This promises opportunities in various directions, e.g. the development of early warning systems to provide more support to struggeling students.
-Based on data from the comprehensive course support system <a href = "https://www.diderot.one/">Diderot</a>, we analyze students' behavior in large undergraduate level classes to answer questions such as `What drives students' success?'.
-
-<br><br>
-<b>Keywords:</b> Educational Data Mining, <a href = "https://www.diderot.one/">Diderot</a>
+<p class = 'small'><b>Idea:</b> There is indication that the current priority system for liver
+donations in the US disadvantages waitlisted patients of different blood groups, liver conditions, and/or demographics.
+We analyze parities and the role of population size and matching policies via simulation and based on real-world data, and explore possible solutions.
 </p>
 
 <br><br>
 
-<p><img src="/img/pol.png" alt="Predictive Policing" width="350" height="350" style="float: left;padding: 10px;">
+<!-- <p><img src="/img/pol.png" alt="Predictive Policing" width="350" height="350" style="float: left;padding: 10px;"> -->
 <h4>Social Bias and Misspecification in Predictive Policing Algorithms</h4>
 <h5>Nil-Jana Akpinar, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h5>
 
 <p class = 'small'><b>Idea:</b> More and more US police departments are using predictive policing software to assess where future crime is likely to occur, and which areas should be patroled most heavily. Recent lines of research (e.g. <a href = "https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x">Lum and Isaac, 2016</a>) question how fair these algorithms are and hypothesized that they facilitate a vicious circle of overpolicing minority populations. We explore the roles of data bias and model misspecification on predictive policing algorithms taylored to inform hotspot policing programs. 
-
-<br><br>
-
-<b>Keywords:</b> Predictive Policing, Fairness, Accountability and Transparency in Machine Learning
 </p>
 
 <br><br>
