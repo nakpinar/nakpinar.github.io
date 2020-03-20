@@ -33,7 +33,7 @@ My research interests lie broadly in Statistical Methodology, Statistical Machin
 Here are some current and recent projects. 
 
 <h1>Current Projects</h1>
-
+<br>
 <!--<p><img src="/img/diderot.png" alt="Diderot" width="350" height="350" style="float: left;padding: 10px;"> -->
 <h4>Fairness in Liver Transplant Allocations</h4>
 <h5>Nil-Jana Akpinar, <a href = "http://zacklipton.com/">Zachary Lipton</a>, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h5>
@@ -43,7 +43,7 @@ donations in the US disadvantages waitlisted patients of different blood groups,
 We analyze parities and the role of population size and matching policies via simulation and based on real-world data, and explore possible solutions.
 </p>
 
-<br><br>
+<br>
 
 <!-- <p><img src="/img/pol.png" alt="Predictive Policing" width="350" height="350" style="float: left;padding: 10px;"> -->
 <h4>Social Bias and Misspecification in Predictive Policing Algorithms</h4>
