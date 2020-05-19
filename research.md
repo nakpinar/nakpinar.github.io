@@ -58,10 +58,10 @@ We analyze parities and the role of population size and matching policies via si
 <h1>Publications & Presentations</h1>
 <br>
 <ul>
-  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data, Work in Progress.</li><br>
+  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data. To appear in: Thirteenth International Conference on Educational Data Mining EDM, 2020.</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
 Bounds for Recurrent Neural Networks with Application to Combinatorial
-Graph Problems. To appear in: Thirty-Fourth Conference on Artifical Intelligence AAAI (Student Abstract), 2020, [<a href = "https://arxiv.org/abs/1901.10289">long version].</a></li><br>
+Graph Problems. Thirty-Fourth Conference on Artifical Intelligence AAAI (Student Abstract), 2020, [<a href = "https://arxiv.org/abs/1901.10289">long version].</a></li><br>
   <li><b>Akpinar, Nil-Jana</b>, Feuerriegel, S. (2017) A Model-free Solver For Arbitrary
 Graph Problems: Predicting Solutions With Deep Learning, INFORMS Annual
 Meeting, Houston, Texas. (Presented by S. Feuerriegel).</li><br>
