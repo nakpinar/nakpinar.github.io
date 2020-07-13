@@ -67,6 +67,6 @@ Graph Problems: Predicting Solutions With Deep Learning, INFORMS Annual
 Meeting, Houston, Texas. (Presented by S. Feuerriegel).</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Alfano, S., Kersten, G., Yu, B. (2017). The Role of Sentiment and Cultural Differences in the Communation Process of e-Negotiations.
 In: Schoop M., Kilgour D. (eds) Group Decision and Negotiation. A Socio-Technical Perspective. GDN 2017. Springer, p.132-144, [<a href = "https://link.springer.com/chapter/10.1007/978-3-319-63546-0_10">paper</a>].</li>
-</ul>
+</ul> 
 
 
