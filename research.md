@@ -30,38 +30,15 @@ p.small {
 </head>
 
 My research interests lie broadly in Statistical Methodology, Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. I am also very excited about targeting applied problems, particulary in the social sciences and education.
-Here are some current and recent projects. 
-
-<h1>Current Projects</h1>
-<br>
-<!--<p><img src="/img/diderot.png" alt="Diderot" width="350" height="350" style="float: left;padding: 10px;"> -->
-<h4>Fairness in Liver Transplant Allocations</h4>
-<h5>Nil-Jana Akpinar, <a href = "http://zacklipton.com/">Zachary Lipton</a>, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h5>
-
-<p class = 'small'><b>Idea:</b> There is indication that the current priority system for liver
-donations in the US disadvantages waitlisted patients of different blood groups, liver conditions, and/or demographics.
-We analyze parities and the role of population size and matching policies via simulation and based on real-world data, and explore possible solutions.
-</p>
-
-<br>
-
-<!-- <p><img src="/img/pol.png" alt="Predictive Policing" width="350" height="350" style="float: left;padding: 10px;"> -->
-<h4>Social Bias and Misspecification in Predictive Policing Algorithms</h4>
-<h5>Nil-Jana Akpinar, <a href = "https://www.andrew.cmu.edu/user/achoulde/">Alexandra Chouldechova</a></h5>
-
-<p class = 'small'><b>Idea:</b> More and more US police departments are using predictive policing software to assess where future crime is likely to occur, and which areas should be patroled most heavily. Recent lines of research (e.g. <a href = "https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x">Lum and Isaac, 2016</a>) question how fair these algorithms are and hypothesized that they facilitate a vicious circle of overpolicing minority populations. We explore the roles of data bias and model misspecification on predictive policing algorithms taylored to inform hotspot policing programs. 
-</p>
-
-<br><br>
-
+Here are some recent projects. 
 
 <h1>Publications & Presentations</h1>
 <br>
 <ul>
-  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data. Thirteenth International Conference on Educational Data Mining EDM, [<a href = "https://arxiv.org/abs/2006.00421">arXiv</a>, <a href = "https://www.youtube.com/watch?v=2WgIhY6MKOY">video presentation</a>].</li><br>
+  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data. Thirteenth International Conference on Educational Data Mining (EDM 2020), [<a href = "https://arxiv.org/abs/2006.00421">arXiv</a>, <a href = "https://www.youtube.com/watch?v=2WgIhY6MKOY">video presentation</a>].</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2020) Sample Complexity
 Bounds for Recurrent Neural Networks with Application to Combinatorial
-Graph Problems. Thirty-Fourth Conference on Artifical Intelligence AAAI (Student Abstract), [<a href = "https://arxiv.org/abs/1901.10289">long version</a>, <a href = "https://www.aaai.org/Papers/AAAI/2020GB/SA-AkpinarNJ.540.pdf">short version</a>, <a href = "https://nakpinar.github.io/final_rnn_poster.pdf">poster</a>].</li><br>
+Graph Problems. Thirty-Fourth Conference on Artifical Intelligence (AAAI 2020) (Student Abstract), [<a href = "https://arxiv.org/abs/1901.10289">long version</a>, <a href = "https://www.aaai.org/Papers/AAAI/2020GB/SA-AkpinarNJ.540.pdf">short version</a>, <a href = "https://nakpinar.github.io/final_rnn_poster.pdf">poster</a>].</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Feuerriegel, S. (2017) A Model-free Solver For Arbitrary
 Graph Problems: Predicting Solutions With Deep Learning, INFORMS Annual
 Meeting, Houston, Texas. (Presented by S. Feuerriegel).</li><br>
