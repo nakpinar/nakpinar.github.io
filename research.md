@@ -58,7 +58,7 @@ We analyze parities and the role of population size and matching policies via si
 <h1>Publications & Presentations</h1>
 <br>
 <ul>
-  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data. To appear in: Thirteenth International Conference on Educational Data Mining EDM, 2020, [<a href = "https://arxiv.org/abs/2006.00421">arXiv</a> <a href = "https://www.youtube.com/watch?v=2WgIhY6MKOY">presentation (Youtube)</a>].</li><br>
+  <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data. Thirteenth International Conference on Educational Data Mining EDM, 2020, [<a href = "https://arxiv.org/abs/2006.00421">arXiv</a>, <a href = "https://www.youtube.com/watch?v=2WgIhY6MKOY">video presentation</a>].</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2019) Sample Complexity
 Bounds for Recurrent Neural Networks with Application to Combinatorial
 Graph Problems. Thirty-Fourth Conference on Artifical Intelligence AAAI (Student Abstract), 2020, [<a href = "https://arxiv.org/abs/1901.10289">long version</a>, <a href = "https://www.aaai.org/Papers/AAAI/2020GB/SA-AkpinarNJ.540.pdf">short version</a>, <a href = "https://nakpinar.github.io/final_rnn_poster.pdf">poster</a>].</li><br>
