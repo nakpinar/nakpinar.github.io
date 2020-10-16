@@ -35,7 +35,7 @@ Here are some recent projects.
 <h1>Publications & Presentations</h1>
 <br>
 <ul>
-    <li><b>Akpinar, Nil-Jana</b>, Chouldechova, A. (2020) The effect of differential victim crime reporting on predictive policing systems, [<a href="https://nakpinar.github.io/diff_victim_crime_rep.pdf">preprint</a>].</li><br>
+    <li><b>Akpinar, Nil-Jana</b>, Chouldechova, A. (2020) The effect of differential victim crime reporting on predictive policing systems, [<a ">preprint</a>].</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Ramdas, A., Acar, U. (2020) Analyzing Student Strategies In Blended Courses Using Clickstream Data. Thirteenth International Conference on Educational Data Mining (EDM 2020), [<a href = "https://arxiv.org/abs/2006.00421">arXiv</a>, <a href = "https://www.youtube.com/watch?v=2WgIhY6MKOY">video presentation</a>].</li><br>
   <li><b>Akpinar, Nil-Jana</b>, Kratzwald, B., Feuerriegel, S. (2020) Sample Complexity
 Bounds for Recurrent Neural Networks with Application to Combinatorial
