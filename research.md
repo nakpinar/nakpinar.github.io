@@ -29,6 +29,7 @@ p.small {
 </style>
 </head>
 
+
 My research interests lie broadly in Statistical Methodology, Statistical Machine Learning, and especially Fairness, Accountability and Transparency in Machine Learning. I am also very excited about targeting applied problems, particulary in the social sciences and education.
 Here are some recent projects. 
 
