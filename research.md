@@ -16,6 +16,7 @@ title: Research
   cursor: pointer;
   font-size: 12px;
 }
+  
 
 /* Darker background on mouse-over */
 .btn:hover {
