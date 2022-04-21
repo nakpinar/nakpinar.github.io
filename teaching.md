@@ -17,6 +17,7 @@ title: Teaching
   font-size: 12px;
 }
 
+  
 /* Darker background on mouse-over */
 .btn:hover {
   background-color: #202020;
