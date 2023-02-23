@@ -23,7 +23,7 @@ description: PhD student in Statistics at Carnegie Mellon University
 # List of links in the navigation bar
 navbar-links:
   About Me: "index"
-  Publications and CV: "nakpinar.pdf"
+  Publications and CV: "nakpinar_cv.pdf"
   Contact: "contact"
 #  Resources:
 #    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
