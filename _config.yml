@@ -4,7 +4,7 @@
 title: Nil-Jana Akpinar
 
 # Short description of your site
-description: PhD student in Statistics at Carnegie Mellon University
+description: Responsible AI postdoc @ AWS
 
 # --- Local development options ---
 # If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
@@ -24,7 +24,7 @@ description: PhD student in Statistics at Carnegie Mellon University
 navbar-links:
   About Me: "index"
   Publications and CV: "nakpinar_cv.pdf"
-  Contact: "contact"
+#  Contact: "contact"
 #  Resources:
 #    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
 #    - Learn markdown: "http://www.markdowntutorial.com/"
@@ -72,7 +72,7 @@ author:
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
 #  rss: true
-  email: "nakpinar@andrew.cmu.edu"
+  email: "niljana.akpinar@gmail.com"
 # facebook: deanattali
   github: nakpinar
   twitter: niljanaakpinar
