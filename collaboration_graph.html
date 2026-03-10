@@ -1,0 +1,313 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 100vh; margin: 0;
+                 background-color: #1a1a2e;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
+        </style>
+    </head>
+
+
+    <body>
+
+    <div id="legend" style="
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: rgba(26, 26, 46, 0.9);
+        border: 1px solid #444;
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    ">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">Collaboration Graph</div>
+        <div style="margin-bottom: 4px;">
+            <span style="display: inline-block; width: 14px; height: 14px; background: #f39c12; border-radius: 50%; vertical-align: middle;"></span>
+            <span style="vertical-align: middle;"> Me</span>
+        </div>
+        <div style="margin-bottom: 4px;">
+            <span style="display: inline-block; width: 12px; height: 12px; background: #e74c3c; border-radius: 50%; vertical-align: middle;"></span>
+            <span style="vertical-align: middle;"> Co-author</span>
+        </div>
+        <div>
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='14' height='14' style='vertical-align: middle;'>
+                <path d='M16 4 h22 l14 14 v42 h-36 z' fill='#3498db' stroke='#1a6ea0' stroke-width='2'/>
+                <path d='M38 4 v14 h14' fill='#72c0f0' stroke='#1a6ea0' stroke-width='2'/>
+            </svg>
+            <span style="vertical-align: middle;"> Paper</span>
+        </div>
+    </div>
+    
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "full_title": "LLM or Human? Perceptions of Trust and Information Quality in Research Summaries", "id": "paper:2601.15556v1", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eLLM or Human? Perceptions of Trust and Information Quality in Research Summaries\u003c/b\u003e\u003cbr\u003earXiv: 2601.15556v1\u003cbr\u003eYear: 2026\u003cbr\u003e\u003cbr\u003eLarge Language Models (LLMs) are increasingly used to generate and edit scientific abstracts, yet their integration into academic writing raises questions about trust, quality, and disclosure. Despite...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2601.15556v1\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2601.15556v1", "year": 2026}, {"borderWidth": 3, "color": "#f39c12", "font": {"color": "white"}, "id": "author:Nil-Jana Akpinar", "label": "Nil-Jana Akpinar", "node_type": "author", "paper_count": 14, "shape": "dot", "size": 68, "title": "\u003cb\u003e\u2605 Nil-Jana Akpinar\u003c/b\u003e\u003cbr\u003ePapers: 14"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Sandeep Avula", "label": "Sandeep Avula", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eSandeep Avula\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:CJ Lee", "label": "CJ Lee", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eCJ Lee\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Brandon Dang", "label": "Brandon Dang", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eBrandon Dang\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Kaza Razat", "label": "Kaza Razat", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eKaza Razat\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Vanessa Murdock", "label": "Vanessa Murdock", "node_type": "author", "paper_count": 2, "shape": "dot", "size": 20, "title": "\u003cb\u003eVanessa Murdock\u003c/b\u003e\u003cbr\u003ePapers: 2"}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Users Mispredict Their Own Preferences for AI Writing Assistance", "id": "paper:2601.04461v1", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eUsers Mispredict Their Own Preferences for AI Writing Assistance\u003c/b\u003e\u003cbr\u003earXiv: 2601.04461v1\u003cbr\u003eYear: 2026\u003cbr\u003e\u003cbr\u003eProactive AI writing assistants need to predict when users want drafting help, yet we lack empirical understanding of what drives preferences. Through a factorial vignette study with 50 participants m...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2601.04461v1\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2601.04461v1", "year": 2026}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Who\u0027s Asking? Evaluating LLM Robustness to Inquiry Personas in Factual Question Answering", "id": "paper:2510.12925v1", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eWho\u0027s Asking? Evaluating LLM Robustness to Inquiry Personas in Factual Question Answering\u003c/b\u003e\u003cbr\u003earXiv: 2510.12925v1\u003cbr\u003eYear: 2025\u003cbr\u003e\u003cbr\u003eLarge Language Models (LLMs) should answer factual questions truthfully, grounded in objective knowledge, regardless of user context such as self-disclosed personal information, or system personalizat...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2510.12925v1\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2510.12925v1", "year": 2025}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Improving LLM Group Fairness on Tabular Data via In-Context Learning", "id": "paper:2412.04642v1", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eImproving LLM Group Fairness on Tabular Data via In-Context Learning\u003c/b\u003e\u003cbr\u003earXiv: 2412.04642v1\u003cbr\u003eYear: 2024\u003cbr\u003e\u003cbr\u003eLarge language models (LLMs) have been shown to be effective on tabular prediction tasks in the low-data regime, leveraging their internal knowledge and ability to learn from instructions and examples...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2412.04642v1\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2412.04642v1", "year": 2024}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Precise Model Benchmarking with Only a Few Observations", "id": "paper:2410.05222v1", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003ePrecise Model Benchmarking with Only a Few Observations\u003c/b\u003e\u003cbr\u003earXiv: 2410.05222v1\u003cbr\u003eYear: 2024\u003cbr\u003e\u003cbr\u003eHow can we precisely estimate a large language model\u0027s (LLM) accuracy on questions belonging to a specific topic within a larger question-answering dataset? The standard direct estimator, which averag...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2410.05222v1\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2410.05222v1", "year": 2024}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "A Unified Causal Framework for Auditing Recommender Systems for Ethical Concerns", "id": "paper:2409.13210v1", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eA Unified Causal Framework for Auditing Recommender Systems for Ethical Concerns\u003c/b\u003e\u003cbr\u003earXiv: 2409.13210v1\u003cbr\u003eYear: 2024\u003cbr\u003e\u003cbr\u003eAs recommender systems become widely deployed in different domains, they increasingly influence their users\u0027 beliefs and preferences. Auditing recommender systems is crucial as it not only ensures the...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2409.13210v1\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2409.13210v1", "year": 2024}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Authenticity and exclusion: social media algorithms and the dynamics of belonging in epistemic communities", "id": "paper:2407.08552v2", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eAuthenticity and exclusion: social media algorithms and the dynamics of belonging in epistemic communities\u003c/b\u003e\u003cbr\u003earXiv: 2407.08552v2\u003cbr\u003eYear: 2024\u003cbr\u003e\u003cbr\u003eRecent philosophical work has explored how the social identity of knowers influences how their contributions are received, assessed, and credited. However, a critical gap remains regarding the role of...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2407.08552v2\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2407.08552v2", "year": 2024}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Local Causal Discovery for Structural Evidence of Direct Discrimination", "id": "paper:2405.14848v3", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eLocal Causal Discovery for Structural Evidence of Direct Discrimination\u003c/b\u003e\u003cbr\u003earXiv: 2405.14848v3\u003cbr\u003eYear: 2024\u003cbr\u003e\u003cbr\u003eIdentifying the causal pathways of unfairness is a critical objective for improving policy design and algorithmic decision-making. Prior work in causal fairness analysis often requires knowledge of th...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2405.14848v3\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2405.14848v3", "year": 2024}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "The Impact of Differential Feature Under-reporting on Algorithmic Fairness", "id": "paper:2401.08788v2", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eThe Impact of Differential Feature Under-reporting on Algorithmic Fairness\u003c/b\u003e\u003cbr\u003earXiv: 2401.08788v2\u003cbr\u003eYear: 2024\u003cbr\u003e\u003cbr\u003ePredictive risk models in the public sector are commonly developed using administrative data that is more complete for subpopulations that more greatly rely on public services. In the United States, f...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2401.08788v2\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2401.08788v2", "year": 2024}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "A Sandbox Tool to Bias(Stress)-Test Fairness Algorithms", "id": "paper:2204.10233v2", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eA Sandbox Tool to Bias(Stress)-Test Fairness Algorithms\u003c/b\u003e\u003cbr\u003earXiv: 2204.10233v2\u003cbr\u003eYear: 2022\u003cbr\u003e\u003cbr\u003eMotivated by the growing importance of reducing unfairness in ML predictions, Fair-ML researchers have presented an extensive suite of algorithmic \u0027fairness-enhancing\u0027 remedies. Most existing algorith...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2204.10233v2\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2204.10233v2", "year": 2022}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Long-term Dynamics of Fairness Intervention in Connection Recommender Systems", "id": "paper:2203.16432v4", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eLong-term Dynamics of Fairness Intervention in Connection Recommender Systems\u003c/b\u003e\u003cbr\u003earXiv: 2203.16432v4\u003cbr\u003eYear: 2022\u003cbr\u003e\u003cbr\u003eRecommender system fairness has been studied from the perspectives of a variety of stakeholders including content producers, the content itself and recipients of recommendations. Regardless of which t...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2203.16432v4\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2203.16432v4", "year": 2022}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "The effect of differential victim crime reporting on predictive policing systems", "id": "paper:2102.00128v2", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eThe effect of differential victim crime reporting on predictive policing systems\u003c/b\u003e\u003cbr\u003earXiv: 2102.00128v2\u003cbr\u003eYear: 2021\u003cbr\u003e\u003cbr\u003ePolice departments around the world have been experimenting with forms of place-based data-driven proactive policing for over two decades. Modern incarnations of such systems are commonly known as hot...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2102.00128v2\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2102.00128v2", "year": 2021}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Analyzing Student Strategies In Blended Courses Using Clickstream Data", "id": "paper:2006.00421v1", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eAnalyzing Student Strategies In Blended Courses Using Clickstream Data\u003c/b\u003e\u003cbr\u003earXiv: 2006.00421v1\u003cbr\u003eYear: 2020\u003cbr\u003e\u003cbr\u003eEducational software data promises unique insights into students\u0027 study behaviors and drivers of success. While much work has been dedicated to performance prediction in massive open online courses, i...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/2006.00421v1\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/2006.00421v1", "year": 2020}, {"color": "#97c2fc", "font": {"color": "white"}, "full_title": "Sample Complexity Bounds for Recurrent Neural Networks with Application to Combinatorial Graph Problems", "id": "paper:1901.10289v2", "image": "data:image/svg+xml;utf8,\u003csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 64 64\u0027 width=\u002764\u0027 height=\u002764\u0027\u003e\u003cpath d=\u0027M16 4 h22 l14 14 v42 h-36 z\u0027 fill=\u0027%233498db\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cpath d=\u0027M38 4 v14 h14\u0027 fill=\u0027%2372c0f0\u0027 stroke=\u0027%231a6ea0\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002728\u0027 x2=\u002746\u0027 y2=\u002728\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002735\u0027 x2=\u002746\u0027 y2=\u002735\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003cline x1=\u002722\u0027 y1=\u002742\u0027 x2=\u002740\u0027 y2=\u002742\u0027 stroke=\u0027white\u0027 stroke-width=\u00272\u0027/\u003e\u003c/svg\u003e", "label": " ", "node_type": "paper", "shape": "image", "size": 25, "title": "\u003cb\u003eSample Complexity Bounds for Recurrent Neural Networks with Application to Combinatorial Graph Problems\u003c/b\u003e\u003cbr\u003earXiv: 1901.10289v2\u003cbr\u003eYear: 2019\u003cbr\u003e\u003cbr\u003eLearning to predict solutions to real-valued combinatorial graph problems promises efficient approximations. As demonstrated based on the NP-hard edge clique cover number, recurrent neural networks (R...\u003cbr\u003e\u003cbr\u003e\u003ca href=\u0027https://arxiv.org/abs/1901.10289v2\u0027 target=\u0027_blank\u0027\u003eOpen on arXiv \u2197\u003c/a\u003e", "url": "https://arxiv.org/abs/1901.10289v2", "year": 2019}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Vivian Lai", "label": "Vivian Lai", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eVivian Lai\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Zana Bu\u00e7inca", "label": "Zana Bu\u00e7inca", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eZana Bu\u00e7inca\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Mo Houtti", "label": "Mo Houtti", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eMo Houtti\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Hyeonsu B. Kang", "label": "Hyeonsu B. Kang", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eHyeonsu B. Kang\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Kevin Chian", "label": "Kevin Chian", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eKevin Chian\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Namjoon Suh", "label": "Namjoon Suh", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eNamjoon Suh\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Alex C. Williams", "label": "Alex C. Williams", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eAlex C. Williams\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Chia-Jung Lee", "label": "Chia-Jung Lee", "node_type": "author", "paper_count": 2, "shape": "dot", "size": 20, "title": "\u003cb\u003eChia-Jung Lee\u003c/b\u003e\u003cbr\u003ePapers: 2"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Pietro Perona", "label": "Pietro Perona", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003ePietro Perona\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Valeriia Cherepanova", "label": "Valeriia Cherepanova", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eValeriia Cherepanova\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Riccardo Fogliato", "label": "Riccardo Fogliato", "node_type": "author", "paper_count": 2, "shape": "dot", "size": 20, "title": "\u003cb\u003eRiccardo Fogliato\u003c/b\u003e\u003cbr\u003ePapers: 2"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Martin Andres Bertran", "label": "Martin Andres Bertran", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eMartin Andres Bertran\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Michael Kearns", "label": "Michael Kearns", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eMichael Kearns\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:James Zou", "label": "James Zou", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eJames Zou\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Pratik Patil", "label": "Pratik Patil", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003ePratik Patil\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Mathew Monfort", "label": "Mathew Monfort", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eMathew Monfort\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Vibhhu Sharma", "label": "Vibhhu Sharma", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eVibhhu Sharma\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Shantanu Gupta", "label": "Shantanu Gupta", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eShantanu Gupta\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Zachary C. Lipton", "label": "Zachary C. Lipton", "node_type": "author", "paper_count": 2, "shape": "dot", "size": 20, "title": "\u003cb\u003eZachary C. Lipton\u003c/b\u003e\u003cbr\u003ePapers: 2"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Liu Leqi", "label": "Liu Leqi", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eLiu Leqi\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Sina Fazelpour", "label": "Sina Fazelpour", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eSina Fazelpour\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Jacqueline Maasch", "label": "Jacqueline Maasch", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eJacqueline Maasch\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Kyra Gan", "label": "Kyra Gan", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eKyra Gan\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Violet Chen", "label": "Violet Chen", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eViolet Chen\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Agni Orfanoudaki", "label": "Agni Orfanoudaki", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eAgni Orfanoudaki\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Fei Wang", "label": "Fei Wang", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eFei Wang\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Alexandra Chouldechova", "label": "Alexandra Chouldechova", "node_type": "author", "paper_count": 2, "shape": "dot", "size": 20, "title": "\u003cb\u003eAlexandra Chouldechova\u003c/b\u003e\u003cbr\u003ePapers: 2"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Manish Nagireddy", "label": "Manish Nagireddy", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eManish Nagireddy\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Logan Stapleton", "label": "Logan Stapleton", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eLogan Stapleton\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Hao-Fei Cheng", "label": "Hao-Fei Cheng", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eHao-Fei Cheng\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Haiyi Zhu", "label": "Haiyi Zhu", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eHaiyi Zhu\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Steven Wu", "label": "Steven Wu", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eSteven Wu\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Hoda Heidari", "label": "Hoda Heidari", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eHoda Heidari\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Cyrus DiCiccio", "label": "Cyrus DiCiccio", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eCyrus DiCiccio\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Preetam Nandy", "label": "Preetam Nandy", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003ePreetam Nandy\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Kinjal Basu", "label": "Kinjal Basu", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eKinjal Basu\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Maria De-Arteaga", "label": "Maria De-Arteaga", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eMaria De-Arteaga\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Aaditya Ramdas", "label": "Aaditya Ramdas", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eAaditya Ramdas\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Umut Acar", "label": "Umut Acar", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eUmut Acar\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Bernhard Kratzwald", "label": "Bernhard Kratzwald", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eBernhard Kratzwald\u003c/b\u003e\u003cbr\u003ePapers: 1"}, {"color": "#e74c3c", "font": {"color": "white"}, "id": "author:Stefan Feuerriegel", "label": "Stefan Feuerriegel", "node_type": "author", "paper_count": 1, "shape": "dot", "size": 16, "title": "\u003cb\u003eStefan Feuerriegel\u003c/b\u003e\u003cbr\u003ePapers: 1"}]);
+                  edges = new vis.DataSet([{"color": "#888888", "from": "paper:2601.15556v1", "to": "author:Nil-Jana Akpinar", "width": 1}, {"color": "#888888", "from": "paper:2601.15556v1", "to": "author:Sandeep Avula", "width": 1}, {"color": "#888888", "from": "paper:2601.15556v1", "to": "author:CJ Lee", "width": 1}, {"color": "#888888", "from": "paper:2601.15556v1", "to": "author:Brandon Dang", "width": 1}, {"color": "#888888", "from": "paper:2601.15556v1", "to": "author:Kaza Razat", "width": 1}, {"color": "#888888", "from": "paper:2601.15556v1", "to": "author:Vanessa Murdock", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2601.04461v1", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2510.12925v1", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2412.04642v1", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2410.05222v1", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2409.13210v1", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2407.08552v2", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2405.14848v3", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2401.08788v2", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2204.10233v2", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2203.16432v4", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2102.00128v2", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:2006.00421v1", "width": 1}, {"color": "#888888", "from": "author:Nil-Jana Akpinar", "to": "paper:1901.10289v2", "width": 1}, {"color": "#888888", "from": "author:Vanessa Murdock", "to": "paper:2510.12925v1", "width": 1}, {"color": "#888888", "from": "paper:2601.04461v1", "to": "author:Vivian Lai", "width": 1}, {"color": "#888888", "from": "paper:2601.04461v1", "to": "author:Zana Bu\u00e7inca", "width": 1}, {"color": "#888888", "from": "paper:2601.04461v1", "to": "author:Mo Houtti", "width": 1}, {"color": "#888888", "from": "paper:2601.04461v1", "to": "author:Hyeonsu B. Kang", "width": 1}, {"color": "#888888", "from": "paper:2601.04461v1", "to": "author:Kevin Chian", "width": 1}, {"color": "#888888", "from": "paper:2601.04461v1", "to": "author:Namjoon Suh", "width": 1}, {"color": "#888888", "from": "paper:2601.04461v1", "to": "author:Alex C. Williams", "width": 1}, {"color": "#888888", "from": "paper:2510.12925v1", "to": "author:Chia-Jung Lee", "width": 1}, {"color": "#888888", "from": "paper:2510.12925v1", "to": "author:Pietro Perona", "width": 1}, {"color": "#888888", "from": "author:Chia-Jung Lee", "to": "paper:2412.04642v1", "width": 1}, {"color": "#888888", "from": "paper:2412.04642v1", "to": "author:Valeriia Cherepanova", "width": 1}, {"color": "#888888", "from": "paper:2412.04642v1", "to": "author:Riccardo Fogliato", "width": 1}, {"color": "#888888", "from": "paper:2412.04642v1", "to": "author:Martin Andres Bertran", "width": 1}, {"color": "#888888", "from": "paper:2412.04642v1", "to": "author:Michael Kearns", "width": 1}, {"color": "#888888", "from": "paper:2412.04642v1", "to": "author:James Zou", "width": 1}, {"color": "#888888", "from": "author:Riccardo Fogliato", "to": "paper:2410.05222v1", "width": 1}, {"color": "#888888", "from": "paper:2410.05222v1", "to": "author:Pratik Patil", "width": 1}, {"color": "#888888", "from": "paper:2410.05222v1", "to": "author:Mathew Monfort", "width": 1}, {"color": "#888888", "from": "paper:2409.13210v1", "to": "author:Vibhhu Sharma", "width": 1}, {"color": "#888888", "from": "paper:2409.13210v1", "to": "author:Shantanu Gupta", "width": 1}, {"color": "#888888", "from": "paper:2409.13210v1", "to": "author:Zachary C. Lipton", "width": 1}, {"color": "#888888", "from": "paper:2409.13210v1", "to": "author:Liu Leqi", "width": 1}, {"color": "#888888", "from": "author:Zachary C. Lipton", "to": "paper:2401.08788v2", "width": 1}, {"color": "#888888", "from": "paper:2407.08552v2", "to": "author:Sina Fazelpour", "width": 1}, {"color": "#888888", "from": "paper:2405.14848v3", "to": "author:Jacqueline Maasch", "width": 1}, {"color": "#888888", "from": "paper:2405.14848v3", "to": "author:Kyra Gan", "width": 1}, {"color": "#888888", "from": "paper:2405.14848v3", "to": "author:Violet Chen", "width": 1}, {"color": "#888888", "from": "paper:2405.14848v3", "to": "author:Agni Orfanoudaki", "width": 1}, {"color": "#888888", "from": "paper:2405.14848v3", "to": "author:Fei Wang", "width": 1}, {"color": "#888888", "from": "paper:2401.08788v2", "to": "author:Alexandra Chouldechova", "width": 1}, {"color": "#888888", "from": "author:Alexandra Chouldechova", "to": "paper:2102.00128v2", "width": 1}, {"color": "#888888", "from": "paper:2204.10233v2", "to": "author:Manish Nagireddy", "width": 1}, {"color": "#888888", "from": "paper:2204.10233v2", "to": "author:Logan Stapleton", "width": 1}, {"color": "#888888", "from": "paper:2204.10233v2", "to": "author:Hao-Fei Cheng", "width": 1}, {"color": "#888888", "from": "paper:2204.10233v2", "to": "author:Haiyi Zhu", "width": 1}, {"color": "#888888", "from": "paper:2204.10233v2", "to": "author:Steven Wu", "width": 1}, {"color": "#888888", "from": "paper:2204.10233v2", "to": "author:Hoda Heidari", "width": 1}, {"color": "#888888", "from": "paper:2203.16432v4", "to": "author:Cyrus DiCiccio", "width": 1}, {"color": "#888888", "from": "paper:2203.16432v4", "to": "author:Preetam Nandy", "width": 1}, {"color": "#888888", "from": "paper:2203.16432v4", "to": "author:Kinjal Basu", "width": 1}, {"color": "#888888", "from": "paper:2102.00128v2", "to": "author:Maria De-Arteaga", "width": 1}, {"color": "#888888", "from": "paper:2006.00421v1", "to": "author:Aaditya Ramdas", "width": 1}, {"color": "#888888", "from": "paper:2006.00421v1", "to": "author:Umut Acar", "width": 1}, {"color": "#888888", "from": "paper:1901.10289v2", "to": "author:Bernhard Kratzwald", "width": 1}, {"color": "#888888", "from": "paper:1901.10289v2", "to": "author:Stefan Feuerriegel", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -4000,
+            "springConstant": 0.01,
+            "springLength": 150
+        },
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+                  // make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+    <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        // Wait for the network to be initialized
+        var checkNetwork = setInterval(function() {
+            if (typeof network !== 'undefined') {
+                clearInterval(checkNetwork);
+                network.on("doubleClick", function(params) {
+                    if (params.nodes.length > 0) {
+                        var nodeId = params.nodes[0];
+                        var nodeData = network.body.data.nodes.get(nodeId);
+                        if (nodeData && nodeData.url) {
+                            window.open(nodeData.url, '_blank');
+                        }
+                    }
+                });
+            }
+        }, 100);
+    });
+    </script>
+    
+</body>
+</html>
